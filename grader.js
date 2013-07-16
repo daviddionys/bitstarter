@@ -60,6 +60,7 @@ var checkUrl = function(url, checksfile) {
     rest.get(url).on('complete',function(result){
 		fs.writeFileSync('outfile.html', result);
 		var checkJson = checkHtmlFile('outfile.html', program.checks);
+	});
 };
 
 var clone = function(fn) {
@@ -74,10 +75,10 @@ if(require.main == module) {
         .option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
 		.option('-u, --url <url_address>', 'Url address')
         .parse(process.argv);
-	if (program.file.length >1){
+	if (program.file != null){
 		var checkJson = checkHtmlFile(program.file, program.checks);
 	}
-	else if(program.url.length >1){
+	else if(program.url != null){
 		var CheckJson = checkUrl(program.url, program.checks);
 	}
 	else {
