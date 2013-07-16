@@ -57,15 +57,9 @@ var checkHtmlFile = function(htmlfile, checksfile) {
 };
 
 var checkUrl = function(url, checksfile) {
-    rest.get(url).on('complete',checkHtmlFile(data,checksfile);
-	$ = cheerioHtmlFile(htmlfile);
-    var checks = loadChecks(checksfile).sort();
-    var out = {};
-    for(var ii in checks) {
-        var present = $(checks[ii]).length > 0;
-        out[checks[ii]] = present;
-    }
-    return out;
+    rest.get(url).on('complete',function(result){
+		fs.writeFileSync('outfile.html', result);
+		var checkJson = checkHtmlFile('outfile.html', program.checks);
 };
 
 var clone = function(fn) {
